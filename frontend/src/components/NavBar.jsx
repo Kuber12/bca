@@ -4,18 +4,18 @@ const NavBar = () => {
   const [click, setClick] = useState(false);
   return (
     <nav className="px-6 py-2 rounded-t-[20px] bg-[rgb(241,250,254)] shadow-2xl lg:px-16 lg:py-0">
-      <div className="grid place-items-center md:flex-1 md:justify-between md:flex md:items-center">
-        <Link
-          to={"/"}
-          className="flex items-center text-lg w-[100px] font-semibold"
-        >
-          <img
-            src={"/Images/Logo.png"}
-            className="w-full h-full p-2"
-            alt="Rz Codes Logo"
-          />
-        </Link>
-      </div>
+        <div className="grid place-items-center lg:hidden">
+          <Link
+            to={"/"}
+            className="flex items-center text-lg w-[100px] font-semibold"
+          >
+            <img
+              src={"/Images/Logo.png"}
+              className="w-full h-full p-2"
+              alt="Rz Codes Logo"
+            />
+          </Link>
+        </div>
       <label
         onClick={(e) => setClick(!click)}
         for="menu-toggle"
@@ -39,7 +39,17 @@ const NavBar = () => {
       >
         <nav className="w-full">
           <ul className="flex-wrap items-center justify-between w-full py-2 text-xl gap-x-5 md:gap-x-4 lg:text-lg lg:flex lg:pt-0">
-            <div className="md:items-center md:flex-wrap md:flex md:gap-5 justify-evenly"> 
+            <div className=" md:items-center md:flex-wrap md:flex md:gap-8 justify-evenly">
+              <Link
+                to={"/"}
+                className="hidden lg:flex md:items-center text-lg w-[100px] font-semibold"
+              >
+                <img
+                  src={"/Images/Logo.png"}
+                  className="w-full h-full p-2"
+                  alt="Rz Codes Logo"
+                />
+              </Link>
               <li className="py-2 lg:py-0 ">
                 <Link
                   className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
