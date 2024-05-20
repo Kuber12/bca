@@ -19,7 +19,7 @@ const Card = ({ name }) => {
       <img class="rounded-xl" src={"/Images/folderpng.png"} alt="" />
       <div class="flex justify-between items-center">
         <div>
-          <h1 class="mt-2 text-xl md:text-2xl font-semibold">{name}</h1>
+          <h1 class="mt-2 text-lg md:text-xl font-semibold">{name}</h1>
         </div>
         <div></div>
       </div>

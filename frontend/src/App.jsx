@@ -4,7 +4,8 @@ import Home from "./pages/Home";
 import Semester from "./components/Semester";
 import Subject from "./components/Subject";
 import NotFound from "./pages/NotFound";
-
+import SignUp from "./pages/SignUp"
+import SignIn from "./pages/SignIn";
 function App() {
   const router = createBrowserRouter([
     {
@@ -26,6 +27,14 @@ function App() {
     {
       path: "/login",
       element: <NotFound/>,
+    },
+    {
+      path: "/signup",
+      element: <SignUp/>,
+    },
+    {
+      path: "/signin",
+      element: <SignIn/>,
     },
 
     {

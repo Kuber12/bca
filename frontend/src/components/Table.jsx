@@ -2,8 +2,8 @@ import React from "react";
 
 const Table = () => {
   return (
-    <div className="table-responsive">
-        <table className=" table table-striped table-striped table-hover">
+    <div className="w-full table-responsive">
+        <table className="table  table-striped table-hover">
           <thead>
             <tr>
               <th scope="col">#</th>

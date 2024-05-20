@@ -17,16 +17,16 @@ const Home = () => {
     { id: 8, name: "Semester 8" },
   ]);
   return (
-    <>
+    <div className="w-full min-h-[100vh]">
       <NavBar />
-      <div class=" w-full  bg-[#dff4ff] flex justify-center gap-10 px-5 py-5 items-center flex-wrap">
+      <div class="w-full  bg-[#dff4ff] flex justify-center gap-10 px-5 py-5 items-center flex-wrap">
         {data.map((card, id) => (
           <Link key={id} to={`/semester/${card.id}`}>
             <Card name={card.name} />
           </Link>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
