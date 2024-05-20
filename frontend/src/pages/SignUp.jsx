@@ -85,6 +85,7 @@ const SignUp = () => {
         </Link>
       </p>
     </form>
+    <Link to={"/"}>  Go back</Link>
   </div>
   
   
