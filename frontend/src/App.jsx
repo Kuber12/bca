@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Semester from "./components/Semester";
 import Subject from "./components/Subject";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const router = createBrowserRouter([
@@ -11,11 +12,24 @@ function App() {
       element: <Home />,
     },
     {
+      path: "/semester",
+      element: <Home />,
+    },
+    {
+      path: "/*",
+      element: <NotFound/>,
+    },
+    {
+      path: "/projects",
+      element: <NotFound/>,
+    },
+
+    {
       path: "/semester/:id",
       element: <Semester />,
       children: [
         {
-          path: "subject/:id",
+          path: "subject/:id?",
           element: <Subject />,
         },
       ],

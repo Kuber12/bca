@@ -1,23 +1,28 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 const NavBar = () => {
+  const [click, setClick] = useState(false);
   return (
-    <nav className="lg:px-16 px-6 bg-white shadow-md flex flex-wrap items-center lg:py-0 py-2">
-      <div className="flex-1 flex justify-between items-center">
-        <a href="/" className="flex text-lg font-semibold">
+    <nav className="px-6 py-2 bg-[rgb(241,250,254)] shadow-2xl lg:px-16 lg:py-0">
+      <div className="grid place-items-center md:flex-1 md:justify-between md:flex md:items-center">
+        <Link
+          to={"/"}
+          className="flex items-center text-lg w-[130px] font-semibold"
+        >
           <img
-            src="https://dev.rz-codes.com/static/logo-275e932fd817cc84d99d91f7519a9a22.svg"
-            width="50"
-            height="50"
-            className="p-2"
+            src={"/Images/Logo.png"}
+            className="w-full h-full p-2"
             alt="Rz Codes Logo"
           />
-          <div className="mt-3 text-red-600">Rz Codes</div>
-        </a>
+        </Link>
       </div>
-      <label for="menu-toggle" className="cursor-pointer lg:hidden block">
+      <label
+        onClick={(e) => setClick(!click)}
+        for="menu-toggle"
+        className="block cursor-pointer lg:hidden"
+      >
         <svg
-          className="fill-current text-gray-900"
+          className="text-gray-900 fill-current"
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
@@ -27,53 +32,33 @@ const NavBar = () => {
           <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
         </svg>
       </label>
-      <input className="hidden" type="checkbox" id="menu-toggle" />
-      <div className="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+      <div
+        className={`${
+          click == true ? ` block` : `hidden`
+        } w-full lg:flex lg:items-center lg:w-auto" id="menu`}
+      >
         <nav>
-          <ul className="text-xl text-center items-center gap-x-5 pt-4 md:gap-x-4 lg:text-lg lg:flex  lg:pt-0">
+          <ul className="items-center pt-4 text-xl text-center gap-x-5 md:gap-x-4 lg:text-lg lg:flex lg:pt-0">
             <li className="py-2 lg:py-0 ">
-              <a
-                className="text-red-600 hover:pb-4 hover:border-b-4 hover:border-yellow-400"
-                href="#"
+              <Link
+                className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
+                to={"/semester"}
               >
-                Blog
-              </a>
+                Semester
+              </Link>
             </li>
             <li className="py-2 lg:py-0 ">
-              <a
-                className="text-red-600 hover:pb-4 hover:border-b-4 hover:border-yellow-400"
-                href="#"
+              <Link
+                className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
+                to={"/projects"}
               >
                 Projects
-              </a>
+              </Link>
             </li>
+
             <li className="py-2 lg:py-0 ">
               <a
-                className="text-red-600 hover:pb-4 hover:border-b-4 hover:border-yellow-400"
-                href="#"
-              >
-                Apps
-              </a>
-            </li>
-            <li className="py-2 lg:py-0 ">
-              <a
-                className="text-red-600 hover:pb-4 hover:border-b-4 hover:border-yellow-400"
-                href="#"
-              >
-                Designs
-              </a>
-            </li>
-            <li className="py-2 lg:py-0 ">
-              <a
-                className="text-red-600 hover:pb-4 hover:border-b-4 hover:border-yellow-400"
-                href="#"
-              >
-                My Journey
-              </a>
-            </li>
-            <li className="py-2 lg:py-0 ">
-              <a
-                className="text-red-600 hover:pb-4 hover:border-b-4 hover:border-yellow-400"
+                className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
                 href="#"
               >
                 About

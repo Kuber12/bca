@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <>
       <NavBar />
-      <div class=" w-full  bg-gray-100 flex justify-center gap-10 py-5 items-center flex-wrap">
+      <div class=" w-full  bg-[#dff4ff] flex justify-center gap-10 px-5 py-5 items-center flex-wrap">
         {data.map((card, id) => (
           <Link key={id} to={`/semester/${card.id}`}>
             <Card name={card.name} />

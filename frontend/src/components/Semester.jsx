@@ -22,9 +22,11 @@ const Semester = () => {
   return (
     <>
       <NavBar />
+      <div class=" w-full  bg-[#dff4ff] flex justify-center gap-14 px-5 py-5 items-center flex-wrap">
+      
       {/* <BreadScrum /> */}
       {!isSubjectRoute && (
-        <div className="w-ful mt-10 h-[100vh] grid  md:grid-cols-4 gap-5  items-center">
+        <div className="w-ful mt-10 h-[auto] grid  md:grid-cols-4 gap-5  items-center">
           {data.map((card, id) => (
             <Link to={`subject/${card.id}`} key={id}>
               <Card name={card.name} />
@@ -33,6 +35,7 @@ const Semester = () => {
         </div>
       )}
       <Outlet /> {/* Add Outlet here to render child routes */}
+      </div>
     </>
   );
 };
