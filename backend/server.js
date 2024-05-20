@@ -18,6 +18,12 @@ mongoose.connect(process.env.MONGO_URL)
 app.use(cors());
 app.use(express.json());
 
+const fileRoutes = require('./routes/fileRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+const userRoutes = require('./routes/userRoutes');
+
+app.use('/api/', adminRoutes,userRoutes);
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
@@ -25,3 +31,4 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
