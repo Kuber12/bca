@@ -7,7 +7,7 @@ const NavBar = () => {
       <div className="grid place-items-center md:flex-1 md:justify-between md:flex md:items-center">
         <Link
           to={"/"}
-          className="flex items-center text-lg w-[130px] font-semibold"
+          className="flex items-center text-lg w-[100px] font-semibold"
         >
           <img
             src={"/Images/Logo.png"}
@@ -38,7 +38,7 @@ const NavBar = () => {
         } w-full lg:flex lg:items-center lg:w-auto" id="menu`}
       >
         <nav className="w-full">
-          <ul className="flex-wrap items-center justify-between w-full pt-4 text-xl gap-x-5 md:gap-x-4 lg:text-lg lg:flex lg:pt-0">
+          <ul className="flex-wrap items-center justify-between w-full py-2 text-xl gap-x-5 md:gap-x-4 lg:text-lg lg:flex lg:pt-0">
             <div className="md:items-center md:flex-wrap md:flex md:gap-5 justify-evenly"> 
               <li className="py-2 lg:py-0 ">
                 <Link
