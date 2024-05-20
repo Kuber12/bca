@@ -47,11 +47,28 @@ const loginController = {
             res.status(500).json({ error: error.message });
         }
     },
+    verify: async (req, res) => {
+        try {
+            const { token } = req.headers;
+            if (!token) {
+                return res.status(401).json({ error: 'No token provided' });
+            }
+            const decoded = jwt.verify(token, process.env.SECRET_KEY);
+            const user = await User.findById(decoded.userId);
+            if (!user) {
+                return res.status(404).json({ error: 'User not found' });
+            }
+            res.status(200).json({ success: true, message: 'User verified successfully' });
+        } catch (error) {
+            res.status(401).json({ error: error.message });
+        }
+    },
+    
 }
 
 module.exports = {
     login: loginController.login,
-    register: loginController.register
-    // verify: loginController.verify
+    register: loginController.register,
+    verify: loginController.verify
 }
 
