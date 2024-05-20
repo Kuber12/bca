@@ -37,33 +37,45 @@ const NavBar = () => {
           click == true ? ` block` : `hidden`
         } w-full lg:flex lg:items-center lg:w-auto" id="menu`}
       >
-        <nav>
-          <ul className="items-center pt-4 text-xl text-center gap-x-5 md:gap-x-4 lg:text-lg lg:flex lg:pt-0">
-            <li className="py-2 lg:py-0 ">
-              <Link
-                className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
-                to={"/semester"}
-              >
-                Semester
-              </Link>
-            </li>
-            <li className="py-2 lg:py-0 ">
-              <Link
-                className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
-                to={"/projects"}
-              >
-                Projects
-              </Link>
-            </li>
+        <nav className="w-full">
+          <ul className="flex-wrap items-center justify-between w-full pt-4 text-xl gap-x-5 md:gap-x-4 lg:text-lg lg:flex lg:pt-0">
+            <div className="md:items-center md:flex-wrap md:flex md:gap-5 justify-evenly"> 
+              <li className="py-2 lg:py-0 ">
+                <Link
+                  className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
+                  to={"/semester"}
+                >
+                  Semester
+                </Link>
+              </li>
+              <li className="py-2 lg:py-0 ">
+                <Link
+                  className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
+                  to={"/projects"}
+                >
+                  Projects
+                </Link>
+              </li>
 
-            <li className="py-2 lg:py-0 ">
-              <a
-                className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
-                href="#"
-              >
-                About
-              </a>
-            </li>
+              <li className="py-2 lg:py-0 ">
+                <a
+                  className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
+                  href="#"
+                >
+                  About
+                </a>
+              </li>
+            </div>
+            <div className="">
+              <li className="py-2 lg:py-0 ">
+                <Link
+                  className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
+                  to={"/login"}
+                >
+                  Login
+                </Link>
+              </li>
+            </div>
           </ul>
         </nav>
       </div>
