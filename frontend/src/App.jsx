@@ -23,6 +23,10 @@ function App() {
       path: "/projects",
       element: <NotFound/>,
     },
+    {
+      path: "/login",
+      element: <NotFound/>,
+    },
 
     {
       path: "/semester/:id",
