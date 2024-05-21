@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { storage } from "../firebase";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
 import {
   Container,
   InputField,
@@ -7,11 +10,14 @@ import {
   Button,
 } from "../Imports/ImportAll";
 const AddFile = () => {
+  const [imageUpload, setImageUpload] = useState(null);
+  const imageListRef = ref(storage, "BCAFiles/");
   const [data, setData] = useState({
     name: "",
     semester: "",
     message: "",
     subject: "",
+    file: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -127,14 +133,31 @@ const AddFile = () => {
     setSubjects(subjects);
   }, [data.semester]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (imageUpload === null) return alert("Upload File Please ");
+    const imageRef = ref(storage, `BCAFiles/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        alert("Uploaded");
+        console.log(url);
+      });
+    });
+  };
+
   console.log(data);
   return (
     <Container className={"flex-col"}>
       <h1 className="text-2xl font-bold">File Upload</h1>
       <hr />
-      <form>
+      <form className="w-full md:w-[auto]" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4">
-          <InputField label={"Name"} value={""} disabled="true" onChange={handleChange} name="name" />
+          <InputField
+            label={"Name"}
+            // disabled="true"
+            onChange={handleChange}
+            name="name"
+          />
           <SelectComponent
             label={"Semester"}
             name={"semester"}
@@ -142,7 +165,7 @@ const AddFile = () => {
             options={SemesterOptions}
           />
           <label
-            className="inline-block mb-2 text-lg font-semibold md:text-xl"
+            className="inline-block  text-lg font-semibold md:text-xl"
             htmlFor={"subject"}
           >
             Subject
@@ -168,7 +191,14 @@ const AddFile = () => {
           />
         </div>
         <br />
-        <Button type="submit" text="Submit" />
+        <div className="w-[auto] md:w-full my-4">
+          {" "}
+          <input
+            type="file"
+            onChange={(e) => setImageUpload(e.target.files[0])}
+          />
+        </div>
+        <Button type="submit" text="Submit" className="mb-3" />
       </form>
     </Container>
   );

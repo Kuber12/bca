@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 const NavBar = () => {
   const [click, setClick] = useState(false);
   return (
-    <nav className="px-6 py-2 rounded-t-[20px] bg-[rgb(241,250,254)] shadow-2xl lg:px-16 lg:py-0">
+    <nav
+    transition={{ duration: 0.5 }} className="px-6 py-2 rounded-t-[20px] bg-[rgb(241,250,254)] shadow-2xl lg:px-16 lg:py-0">
       <div className="grid place-items-center lg:hidden">
         <Link
           to={"/"}
