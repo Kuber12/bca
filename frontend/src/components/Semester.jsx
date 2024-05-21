@@ -4,7 +4,7 @@ import { Link, useParams, Outlet, useLocation } from "react-router-dom";
 // import BreadScrum from "./BreadScrum";
 import SubjectCard from "./SubjectCard";
 import NavBar from "./NavBar";
-
+import { UserBodyContainer } from "../Imports/ImportAll";
 const Semester = () => {
   const { id } = useParams();
   const location = useLocation();
@@ -22,20 +22,19 @@ const Semester = () => {
   return (
     <>
       <NavBar />
-      <div class=" w-full  bg-[#dff4ff] flex justify-center gap-14 px-5 py-5 items-center flex-wrap">
-      
-      {/* <BreadScrum /> */}
-      {!isSubjectRoute && (
-        <div className="w-ful mt-10 h-[auto] grid  md:grid-cols-4 gap-5  items-center">
-          {data.map((card, id) => (
-            <Link to={`subject/${card.id}`} key={id}>
-              <Card name={card.name} />
-            </Link>
-          ))}
-        </div>
-      )}
-      <Outlet /> {/* Add Outlet here to render child routes */}
-      </div>
+      <UserBodyContainer>
+        {/* <BreadScrum /> */}
+        {!isSubjectRoute && (
+          <div className="w-ful mt-10 h-[auto] grid  md:grid-cols-4 gap-5  items-center">
+            {data.map((card, id) => (
+              <Link to={`subject/${card.id}`} key={id}>
+                <Card name={card.name} />
+              </Link>
+            ))}
+          </div>
+        )}
+        <Outlet /> {/* Add Outlet here to render child routes */}
+      </UserBodyContainer>
     </>
   );
 };

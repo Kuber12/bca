@@ -6,6 +6,7 @@ import Subject from "./components/Subject";
 import NotFound from "./pages/NotFound";
 import SignUp from "./pages/SignUp"
 import SignIn from "./pages/SignIn";
+import AddFile from "./pages/AddFile";
 function App() {
   const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ function App() {
     {
       path: "/signin",
       element: <SignIn/>,
+    },
+    {
+      path: "/addFile",
+      element: <AddFile/>,
     },
 
     {

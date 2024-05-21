@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Container } from "../Imports/ImportAll";
 import Sign from "../Apis/Sign";
-import axios from "axios";
 const SignUp = () => {
   const { signUp } = Sign();
   const [data, setData] = useState({
@@ -14,7 +14,7 @@ const SignUp = () => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     alert("Clicked ");
     signUp(data)
@@ -24,7 +24,7 @@ const SignUp = () => {
           username: "",
           email: "",
           password: "",
-        })
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -32,7 +32,7 @@ const SignUp = () => {
   };
   console.log(data);
   return (
-    <div className=" w-full rounded-2xl shadow-2xl bg-[#ebf0f3] flex justify-center gap-10 px-5 py-5 items-center flex-wrap  ">
+    <Container>
       <div class="flex min-h-screen items-center justify-center">
         <div class="relative flex flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
           <h4 class="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
@@ -66,7 +66,6 @@ const SignUp = () => {
                   name="email"
                   required
                   value={data.email}
-
                 />
                 <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                   Email
@@ -129,15 +128,13 @@ const SignUp = () => {
           </form>
           <Link to={"/"}> Go back</Link>
         </div>
-
         <link
           rel="stylesheet"
           href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css"
         />
-
         <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
       </div>
-    </div>
+    </Container>
   );
 };
 

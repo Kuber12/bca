@@ -4,7 +4,7 @@ import { Link, Outlet } from "react-router-dom";
 // import BreadScrum from "../components/BreadScrum";
 import Semester from "../components/Semester";
 import NavBar from "../components/NavBar";
-
+import { UserBodyContainer } from "../Imports/ImportAll";
 const Home = () => {
   const [data, setData] = useState([
     { id: 1, name: "Semester 1" },
@@ -19,13 +19,14 @@ const Home = () => {
   return (
     <div className="w-full min-h-[100vh]">
       <NavBar />
-      <div class="w-full  bg-[#dff4ff] flex justify-center gap-10 px-5 py-5 items-center flex-wrap">
+
+      <UserBodyContainer>
         {data.map((card, id) => (
           <Link key={id} to={`/semester/${card.id}`}>
             <Card name={card.name} />
           </Link>
         ))}
-      </div>
+      </UserBodyContainer>
     </div>
   );
 };
