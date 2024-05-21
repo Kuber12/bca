@@ -4,18 +4,18 @@ const NavBar = () => {
   const [click, setClick] = useState(false);
   return (
     <nav className="px-6 py-2 rounded-t-[20px] bg-[rgb(241,250,254)] shadow-2xl lg:px-16 lg:py-0">
-        <div className="grid place-items-center lg:hidden">
-          <Link
-            to={"/"}
-            className="flex items-center text-lg w-[100px] font-semibold"
-          >
-            <img
-              src={"/Images/Logo.png"}
-              className="w-full h-full p-2"
-              alt="Rz Codes Logo"
-            />
-          </Link>
-        </div>
+      <div className="grid place-items-center lg:hidden">
+        <Link
+          to={"/"}
+          className="flex items-center text-lg w-[100px] font-semibold"
+        >
+          <img
+            src={"/Images/Logo.png"}
+            className="w-full h-full p-2"
+            alt="Rz Codes Logo"
+          />
+        </Link>
+      </div>
       <label
         onClick={(e) => setClick(!click)}
         for="menu-toggle"
@@ -75,6 +75,16 @@ const NavBar = () => {
                   About
                 </a>
               </li>
+              {
+                <li className="py-2 lg:py-0 ">
+                  <Link to={"/addFile"}
+                    className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
+                    href="#"
+                  >
+                    File Upload
+                  </Link>
+                </li>
+              }
             </div>
             <div className="">
               <li className="py-2 lg:py-0 ">
