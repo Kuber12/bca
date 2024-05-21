@@ -22,7 +22,7 @@ const fileRoutes = require('./routes/fileRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const userRoutes = require('./routes/userRoutes');
 
-app.use('/api/', adminRoutes,userRoutes);
+app.use('/api/', adminRoutes,userRoutes,fileRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');

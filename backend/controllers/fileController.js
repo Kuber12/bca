@@ -2,19 +2,28 @@ const asyncHandler = require("express-async-handler");
 const fs = require('fs');
 const path = require('path');
 const staticFolder = '../frontend/public/uploads';
+const File = require('../models/FileModel');
 
-const uploadFile = (req, res) => {
+const uploadFile = asyncHandler(async (req, res) => {
     try{
-        if (!req.file) {
-            return res.status(400).send('No file uploaded.');
+        const { semester, fileType, subjectName} = req.body;
+        if (!semester || !fileType || !subjectName) {
+            return res.status(400).json({ error: 'All fields are required' });
         }
-        const fileName = req.generatedFileName;
-        // File was uploaded successfully
-        res.status(200).json({url : `https://blog-backend-3dcg.onrender.com/api/file/profile/${req.file.filename}`})
+        const newFile = new File({
+            fileType,
+            semester,
+            subjectName
+        });
+        await newFile.save();
+        res.status(201).json({ success: true, message: 'File added successfully' });
     }catch(error){
+        console.log('Error adding file');
+        console.log(error);
         res.status(500).send('An error occurred');
     }
-};
+});
+
 const deleteFile = (req,res) => {
     const fileNameToDelete = req.params.fileName;
     if(!fileNameToDelete){
