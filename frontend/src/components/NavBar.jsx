@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 const NavBar = () => {
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState(false);  
+  const [token,setToken] = useState(localStorage.getItem("token"));
+  // alert("Token: " + token);
   return (
     <nav
     transition={{ duration: 0.5 }} className="px-6 py-2 rounded-t-[20px] bg-[rgb(241,250,254)] shadow-2xl lg:px-16 lg:py-0">
@@ -77,7 +79,7 @@ const NavBar = () => {
                   About
                 </a>
               </li>
-              {
+              {token ?
                 <li className="py-2 lg:py-0 ">
                   <Link to={"/addFile"}
                     className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
@@ -85,18 +87,18 @@ const NavBar = () => {
                   >
                     File Upload
                   </Link>
-                </li>
+                </li> : ""
               }
             </div>
             <div className="">
-              <li className="py-2 lg:py-0 ">
+              {!token ? <li className="py-2 lg:py-0 ">
                 <Link
                   className="text-[#0c546d] text-xl font-semibold hover:pb-4 hover:border-b-4 hover:border-yellow-400"
-                  to={"/signup"}
+                  to={"/signin"}
                 >
                   Login
                 </Link>
-              </li>
+              </li> : ""}
             </div>
           </ul>
         </nav>

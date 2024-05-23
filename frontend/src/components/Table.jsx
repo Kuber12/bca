@@ -1,44 +1,34 @@
 import React from "react";
 
-const Table = () => {
+const Table = ({data}) => {
+  // console.log(data)
   return (
+    
     <div className="w-full table-responsive">
-        <table className="table  table-striped table-hover">
+        <table className="table table-striped table-hover">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">Name</th>
+              <th scope="col">Download</th>
+              <th scope="col">View</th>
             </tr>
           </thead>
           <tbody>
+           {data?.length > 0 ? data.map((data,i)=>
+              <tr key={i}>
+                <td>{i}</td>
+                <td>{data.name}</td>
+                <td><a href={`${data.filePath}`} download >Download</a></td>
+                <td><a href={`${data.filePath}`} target="_blank" rel="noopener noreferrer">View</a></td>
+              </tr>
+           ) : (
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
+              <td colSpan="4" className="text-lg text-center text-red-700 md:text-2xl">
+                No Data Found
+              </td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-            </tr>
+           ) }
           </tbody>
         </table>
     </div>

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container } from "../Imports/ImportAll";
+import SignApi from "../Apis/SignApi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const SignIn = () => {
+  const { SignInApi } = SignApi();
+  const nav =   useNavigate();
   const [data, setData] = useState({
     username: "",
-    email: "",
     password: "",
   });
   const handleChange = (e) => {
@@ -13,11 +17,42 @@ const SignIn = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Clicked ");
+    const { username, password } = data;
+    if (username && password) {
+      toast.info("Please wait processing");
+      SignInApi(data)
+        .then((res) => {
+          
+          toast.success("Login Success");
+          setTimeout(()=>{
+           
+              nav("/");
+          },3000)
+          // alert(res)
+          localStorage.setItem("token", res);
+        })
+        .catch((err) => {
+            toast.error("Username or password is invalid");
+         } )}
+         else {
+      return toast.error("Please enter all fields");
+    }
   };
   console.log(data);
   return (
     <Container>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <div class="flex min-h-screen items-center justify-center">
         <div class="relative flex flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
           <h4 class="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
@@ -81,12 +116,12 @@ const SignIn = () => {
             </div>
             <button
               class="block w-full select-none rounded-lg bg-blue-600 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg hover:shadow-[#2696a6] focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-              type="button"
+              type="submit"
               data-ripple-light="true"
             >
               Log In
             </button>
-            <p class="mt-4 block text-center font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
+            {/* <p class="mt-4 block text-center font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
               Already have an account?
               <Link
                 class="font-semibold text-[#2696a6] transition-colors hover:text-blue-700"
@@ -94,7 +129,7 @@ const SignIn = () => {
               >
                 Sign Up
               </Link>
-            </p>
+            </p> */}
           </form>
           <Link to={"/"}> Go back</Link>
         </div>

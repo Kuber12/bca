@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container } from "../Imports/ImportAll";
-import Sign from "../Apis/Sign";
+import Sign from "../Apis/SignApi";
 const SignUp = () => {
   const { signUp } = Sign();
   const [data, setData] = useState({

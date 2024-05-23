@@ -9,16 +9,25 @@ import {
   SelectComponent,
   Button,
 } from "../Imports/ImportAll";
+import NavBar from "../components/NavBar";
 const AddFile = () => {
   const [imageUpload, setImageUpload] = useState(null);
+
+  const [token,setToken] = useState(localStorage.getItem("token"));
+  const config = {
+    headers:{
+      Authorization:`Bearer ${token}`
+    }
+  }
+  console.log(config)
+
+
   const imageListRef = ref(storage, "BCAFiles/");
   const [data, setData] = useState({
     name: "",
-    semester: "",
-    message: "",
-    subject: "",
-    file: "",
+    filePath: "",
   });
+  const [subjectId,setSubjectId] = useState();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
@@ -119,11 +128,11 @@ const AddFile = () => {
   ];
 
   const SemesterForSubjectList = (selected) => {
-    console.log(selected);
+    // console.log(selected);
     const filtered = SubjectOptions.find(
       (item) => item.id === parseInt(selected)
     );
-    console.log(filtered);
+    // console.log(filtered);
     return filtered ? filtered.subjects : [];
   };
 
@@ -141,6 +150,7 @@ const AddFile = () => {
       getDownloadURL(snapshot.ref).then((url) => {
         alert("Uploaded");
         console.log(url);
+
       });
     });
   };
@@ -148,6 +158,7 @@ const AddFile = () => {
   console.log(data);
   return (
     <Container className={"flex-col"}>
+      <NavBar/>
       <h1 className="text-2xl font-bold">File Upload</h1>
       <hr />
       <form className="w-full md:w-[auto]" onSubmit={handleSubmit}>
@@ -165,13 +176,13 @@ const AddFile = () => {
             options={SemesterOptions}
           />
           <label
-            className="inline-block  text-lg font-semibold md:text-xl"
+            className="inline-block text-lg font-semibold md:text-xl"
             htmlFor={"subject"}
           >
             Subject
           </label>
           <select
-            onChange={handleChange}
+            onChange={e=> setSubjectId(e.target.value)}
             name="subject"
             className="px-2 py-2 font-semibold rounded-lg"
           >
@@ -182,13 +193,13 @@ const AddFile = () => {
               <option value="">{subject}</option>
             ))}
           </select>
-          <TextArea
+          {/* <TextArea
             onChange={handleChange}
             name={"message"}
             label={"Message"}
             rows={1}
             cols={50}
-          />
+          /> */}
         </div>
         <br />
         <div className="w-[auto] md:w-full my-4">

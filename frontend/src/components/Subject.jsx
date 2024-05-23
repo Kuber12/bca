@@ -1,24 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SubjectCard from "./SubjectCard";
 // import BreadScrum from "./BreadScrum";
 import { useParams } from "react-router-dom";
 import Table from "./Table";
-
+import FilesApi from "../Apis/FilesApi";
+import axios from "axios";
 const Subject = () => {
   const { id } = useParams();
+  const { getFiles } = FilesApi();
   console.log(id);
-  const [data, setData] = useState([
-    { id: 1, name: "Chapter 1" },
-    { id: 2, name: "Chapter 2" },
-    { id: 3, name: "Chapter 3" },
-    { id: 4, name: "Chapter 4" },
-    { id: 5, name: "Chapter 5" },
-  ]);
-
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    // axios.get(`https://bca-file-backend.onrender.com/file/subjectid/${id}`)
+    getFiles(id)
+      .then((res) => {
+        setData(res);
+        console.log(res);
+      })
+      .catch((err) => console.error(err));
+  }, [id]);
+  console.log(id);
   return (
     <>
-
-   <Table/>
+      <Table data={data} />
     </>
   );
 };
