@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Container } from "../Imports/ImportAll";
 import SignApi from "../Apis/SignApi";
 import { ToastContainer, toast } from "react-toastify";
+import { reloadConext } from "../GlobalContext/ReloadProvider";
 import "react-toastify/dist/ReactToastify.css";
 const SignIn = () => {
   const { SignInApi } = SignApi();
+  const {reload,setReload} = useContext(reloadConext);
   const nav =   useNavigate();
   const [data, setData] = useState({
     username: "",
@@ -22,17 +24,17 @@ const SignIn = () => {
       toast.info("Please wait processing");
       SignInApi(data)
         .then((res) => {
-          
+          setReload(true)
           toast.success("Login Success");
           setTimeout(()=>{
-           
+           setReload(false)
               nav("/");
           },3000)
           // alert(res)
           localStorage.setItem("token", res);
         })
         .catch((err) => {
-            toast.error("Username or password is invalid");
+            toast.error("Username or password is invalid"+ err);
          } )}
          else {
       return toast.error("Please enter all fields");

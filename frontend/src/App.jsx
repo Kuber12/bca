@@ -4,9 +4,11 @@ import Home from "./pages/Home";
 import Semester from "./components/Semester";
 import Subject from "./components/Subject";
 import NotFound from "./pages/NotFound";
-import SignUp from "./pages/SignUp"
+import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import AddFile from "./pages/AddFile";
+import UserDetailsProvider from "./GlobalContext/UserDetailsProvider";
+import ReloadProvider from "./GlobalContext/ReloadProvider";
 function App() {
   const router = createBrowserRouter([
     {
@@ -19,27 +21,27 @@ function App() {
     },
     {
       path: "/*",
-      element: <NotFound/>,
+      element: <NotFound />,
     },
     {
       path: "/projects",
-      element: <NotFound/>,
+      element: <NotFound />,
     },
     {
       path: "/login",
-      element: <NotFound/>,
+      element: <NotFound />,
     },
     {
       path: "/signup",
-      element: <SignUp/>,
+      element: <SignUp />,
     },
     {
       path: "/signin",
-      element: <SignIn/>,
+      element: <SignIn />,
     },
     {
       path: "/addFile",
-      element: <AddFile/>,
+      element: <AddFile />,
     },
 
     {
@@ -54,7 +56,13 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <ReloadProvider>
+    <UserDetailsProvider>
+      <RouterProvider router={router}></RouterProvider>;
+    </UserDetailsProvider>
+    </ReloadProvider>
+  );
 }
 
 export default App;

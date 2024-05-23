@@ -17,10 +17,10 @@ const Table = ({data}) => {
           <tbody>
            {data?.length > 0 ? data.map((data,i)=>
               <tr key={i}>
-                <td>{i}</td>
-                <td>{data.name}</td>
-                <td><a href={`${data.filePath}`} download >Download</a></td>
-                <td><a href={`${data.filePath}`} target="_blank" rel="noopener noreferrer">View</a></td>
+                <td>{i+1}</td>
+                <td>{data?.name}</td>
+                <td><a href={`${data?.filePath}`} download>Download</a></td>
+                <td><a href={`${data?.filePath}`} target="_blank" rel="noopener noreferrer">View</a></td>
               </tr>
            ) : (
             <tr>
